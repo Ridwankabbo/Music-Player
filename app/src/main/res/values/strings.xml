@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MusicPlayer</string>
+    <string-array name="music_name">
+        <item>Background piano music</item>
+        <item>Lost ambient</item>
+        <item>Mixkit beautiful </item>
+        <item>Mixkit pop</item>
+        <item>Sad ambient piano </item>
+        <item>Sad waitz piano music</item>
+        <item>The last night solo piano</item>
+    </string-array>
 </resources>

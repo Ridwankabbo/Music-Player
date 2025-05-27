@@ -1,7 +1,9 @@
 package com.example.musicplayer
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.provider.SyncStateContract.Constants
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
@@ -16,9 +18,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var mediaPlayer:MediaPlayer
 
-    var n = 0
-    var music_index = 0
+    private var n = 0
+    private var music_index = 0
     private var music_list = ArrayList<Int>()
+
+    private lateinit var  recivedIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +34,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         next = findViewById(R.id.next)
 
         initializeMusic()
+        getMusicIndex()
 
         mediaPlayer = MediaPlayer.create(this, music_list[music_index])
 
@@ -40,8 +45,14 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     fun initializeMusic(){
-        music_list.add(R.raw.mixkit_beautiful_dream)
         music_list.add(R.raw.background_piano_music)
+        music_list.add(R.raw.lost_ambient)
+        music_list.add(R.raw.mixkit_beautiful_dream)
+        music_list.add(R.raw.mixkit_pop_05)
+        music_list.add(R.raw.mixkit_relaxing_in_nature)
+        music_list.add(R.raw.sad_ambient_piano_cinematic_thinking_in_silence)
+        music_list.add(R.raw.sad_waltz_piano_music)
+        music_list.add(R.raw.the_longest_night_solo_piano_track)
     }
 
     override fun onClick(v: View?) {
@@ -52,7 +63,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 pause_play.setImageResource(R.drawable.pause)
             }
             else{
-                mediaPlayer.stop()
+                mediaPlayer.pause()
                 pause_play.setImageResource(R.drawable.play)
             }
         }
@@ -69,4 +80,16 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             n = 0
         }
     }
+
+
+    fun getMusicIndex(){
+        recivedIntent = Intent()
+        val extras:Bundle? = recivedIntent.extras
+        if(extras != null){
+            music_index = extras.getString("index")!!.toInt()
+        }
+
+    }
+
+
 }
