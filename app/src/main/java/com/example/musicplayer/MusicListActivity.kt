@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
@@ -31,9 +32,10 @@ class MusicListActivity : AppCompatActivity() {
         listView.adapter = music_list_adapter
 
         listView.setOnItemClickListener{parent, view, position, id ->
-            var song_index = music_array[position]
+//            var song_index = music_array[position]
+            Toast.makeText(this, position.toString(), Toast.LENGTH_SHORT).show()
             var intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("index",song_index)
+            intent.putExtra("index",position)
             startActivity(intent)
         }
 
